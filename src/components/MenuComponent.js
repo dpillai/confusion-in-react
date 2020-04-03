@@ -1,37 +1,19 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardText, CardTitle, CardImg, CardImgOverlay } from 'reactstrap';
+import { Card, CardTitle, CardImg, CardImgOverlay } from 'reactstrap';
 
 class Menu extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            selectedDish: null
-        }
+        console.log('Menu called')
     }
-    onDishSelect(dish) {
-        this.setState({selectedDish: dish});
+    componentDidMount(){
+        console.log('Menu did mount')
     }
-    
-    renderDish(dish) {
-        if(dish !== null ) 
-            return (
-                <Card>
-                    <CardImg top src={dish.image} alt={dish.name} />
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card> 
-            )
-        else
-            return <div></div>
-    }
-
     render() {
         const Menu = this.props.dishes.map((dish) =>{
             return (
                 <div key={dish.id} className="col-12 col-md-5 m-1">
-                    <Card  onClick={() => this.onDishSelect(dish)}>
+                    <Card onClick={() => this.props.onClick(dish)}>
                         <CardImg width="100%" src={dish.image} alt={dish.name} />
                         <CardImgOverlay>
                             <CardTitle>{dish.name}</CardTitle>
@@ -45,9 +27,6 @@ class Menu extends Component {
                 <div className="row">
                     {Menu}
                 </div> 
-                <div className="row">
-                    {this.renderDish(this.state.selectedDish)}
-                </div>
             </div>
         )
     }
