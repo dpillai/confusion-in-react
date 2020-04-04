@@ -4,6 +4,8 @@ import Menu from './MenuComponent';
 import DISHES from '../shared/dishes';
 import DishDetails from './DishDetailsComponent';
 import { COMMENTS } from '../shared/comments';
+import Header from './Header';
+import Footer from './Footer';
 
 class Main extends Component {
     constructor(props) {
@@ -24,13 +26,10 @@ class Main extends Component {
     render() {
         return (
             <div>
-              <Navbar color="primary" dark>
-                {/* <div className="container-fluid"> */}
-                  <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-                {/* </div> */}
-              </Navbar>
-              <Menu dishes={DISHES} onClick={(dish) => this.onDishSelect(dish)} />
-              <DishDetails selectedDish={this.state.selectedDish} comments={COMMENTS} />
+                <Header />
+                <Menu dishes={DISHES} onClick={(dish) => this.onDishSelect(dish)} />
+                <DishDetails selectedDish={this.state.selectedDish} comments={COMMENTS} />
+                <Footer />
             </div>
         );
     }
